@@ -1,0 +1,33 @@
+html, body {
+    background-color: #E5F0F8;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 85px;
+    font-style: italic;
+    background: linear-gradient(90deg, #003D86, #0096DA);
+    width: 100%;
+    border-bottom: 5px solid #FFCD00;
+}
+
+.container {
+    max-width: 350px;
+}
+
+.question-title {
+    color: #003D86
+}
+
+.question-name {
+    color: #003D86;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.question-input {
+    
+}
