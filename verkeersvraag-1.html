@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <title>Verkeersvraag 1</title>
+  </head>
+  <body>
+    <header>
+        <div class="header-title">Verkeersvraag</div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="bg-white text-center py-1 mt-3 br-10">
+                <div class="fw-bold fst-italic question-title">Vraag 1:</div>
+            </div>
+
+            <img src="assets/images/verkeersvraag-1.png" alt="" class="w-100 pt-4">
+
+            <div class="question-name pt-4">
+              De auto in het parkeervak rijdt een stukje achteruit. Wat moeten de fietsers doen?
+            </div>
+
+            <ul class="question-list" x-data="question()">
+              <li class="question-card"
+                @click="checkedValue = 1"
+                :class="{ 'selected-question' : checkedValue === 1, 'correct-answer' : correctAnswer === 1, 'wrong-answer' : wrongAnswer === 1 }"
+              >
+                <div class="circle" 
+                  :class="{ 'correct-circle' : correctAnswer === 1, 'wrong-circle' : wrongAnswer === 1}"
+                >A</div>
+                <span>Kijken of de auto stopt, dan voorbijrijden</span>
+              </li>
+
+              <li class="question-card"
+                @click="checkedValue = 2"
+                :class="{ 'selected-question' : checkedValue === 2, 'correct-answer' : correctAnswer === 2, 'wrong-answer' : wrongAnswer === 2 }"
+              >
+                <div class="circle"
+                  :class="{ 'correct-circle' : correctAnswer === 2, 'wrong-circle' : wrongAnswer === 2}"
+                >B</div>
+                <span>Wachten, want de auto mag voorgaan</span>
+              </li>
+
+              <li class="question-card mb-3"
+                @click="checkedValue = 3"
+                :class="{ 'selected-question' : checkedValue === 3, 'correct-answer' : correctAnswer === 3, 'wrong-answer' : wrongAnswer === 3 }"
+              >
+                <div class="circle"
+                  :class="{ 'correct-circle' : correctAnswer === 3, 'wrong-circle' : wrongAnswer === 3}"
+                >B</div>
+                <span>Snel de auto voorbij fietsen</span>
+              </li>
+
+              <div x-show.transition="showHint()" class="text-help">
+                De auto hoort te wachten en de fietsers voor te laten gaan. Maar de automobilist kan niet alles goed zien.
+              </div>
+
+              <div>
+                <button 
+                  class="btn btn-warning br-10 w-100 anbw-button-warning" 
+                  :disabled="setActive()"
+                  @click="checkAnswer()"
+                >
+                Resultaat</button>
+              </div>
+            </ul>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script>
+      function question() {
+        return {
+          checkedValue: 0,
+          correctAnswer: 0,
+          wrongAnswer: 0,
+          evaluatedAnswer: false,
+
+          checkAnswer() {
+            this.evaluatedAnswer = true;
+            this.correctAnswer = 1;
+            if(this.checkedValue == this.correctAnswer) {
+              this.checkedValue = 0;
+              return;
+            } else {
+              this.wrongAnswer = this.checkedValue;
+              this.checkedValue = 0;
+            }
+          },
+
+          setActive() {
+            return this.checkedValue === 0;
+          },
+
+          showHint() {
+            if(this.evaluatedAnswer) {
+              return true;
+            }
+          }, 
+
+        }
+      }
+    </script>
+  </body>
+</html>
