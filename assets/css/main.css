@@ -134,3 +134,12 @@ header {
     color: #003D86;
     padding: 20px 25px;
 }
+
+.linkto {
+    font-weight: bold;
+    color: #F28200;
+}
+
+.linkto:hover {
+    color: #FFCD00;
+}
